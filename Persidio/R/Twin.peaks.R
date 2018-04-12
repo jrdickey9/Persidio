@@ -7,9 +7,9 @@
 #' @param K describes the carrying capacity
 #'
 #' @examples
-#' p<-1/(2*K)
-#' K<-1000
 #' Twin.peaks(p,K,2,100)
+K<-1000
+p<-1/(2*K)
 Twin.peaks<-function(p,K,r,gens){
   K<-K
   q<-1-p
