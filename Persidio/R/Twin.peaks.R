@@ -1,20 +1,33 @@
 #' Twin.peaks
-#' @description Twin.peaks, a function describing selection, survival and reproduction, on a population given a single climate change event that affects temperature in an island ecosystem, 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. No allele has dominance and the population is in hardy weinberg equilibrium to denote genotype frequency.
+#'
+#' @description Twin.peaks, a function describing selection on a population given a single climate change event that affects temperature by a 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. No allele has dominance and the population is in hardy weinberg equilibrium to denote genotype frequency. This function estimates population size.
+#'
 #' @usage Twin.peaks(p,K,r,gens)
+#'
 #' @param p an object describing the initial frequency of A
 #' @param r a number giving the population growth rate
 #' @param gens is the number of generations
 #' @param K describes the carrying capacity
 #'
+#' @author Jonathan Dickey
+#'
+#' @references
+#' Bay, R. A., Rose, N. H., Logan, C. A., & Palumbi, S. R. (2017). Genomic models predict successful coral adaptation if future ocean warming rates are reduced. Science advances, 3(11), e1701413.
+#'
+#' Gomulkiewicz, R., & Holt, R. D. (1995). When does evolution by natural selection prevent extinction?. Evolution, 49(1), 201-207.
+#'
+#' Lindsey, H. A., Gallie, J., Taylor, S., & Kerr, B. (2013). Evolutionary rescue from extinction is contingent on a lower rate of environmental change. Nature, 494(7438), 463.
+#'
 #' @examples
 #' Twin.peaks(p,K,2,100)
-K<-1000
-p<-1/(2*K)
+
+#K<-1000
+#p<-1/(2*K)
 Twin.peaks<-function(p,K,r,gens){
   K<-K
   q<-1-p
-  pA<-rep(NA,gens) #numeric(length=t)
-  Nt<-rep(NA,gens) #numeric (length=t)
+  pA<-rep(NA,gens)
+  Nt<-rep(NA,gens)
   NAA<-K*p^2
   NAa<-K*2*p*q
   Naa<-K*q^2
