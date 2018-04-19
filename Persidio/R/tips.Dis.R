@@ -1,8 +1,8 @@
-#' Forest.knolls
+#' tips.Dis
 #'
-#' @description Forest.knolls, a function that estimates the proportion of the A allele in a population given a single generation of interest and n number of taxa while discreteizing the proportion of the A allele into three traits 1 (high), 2 (medium), 3 (low) which will be an indicator for population size.
+#' @description tips.Dis, a function that estimates the proportion of the A allele in a population given a single generation of interest and n number of taxa while discreteizing the proportion of the A allele into three traits 1 (high), 2 (medium), 3 (low) which will be an indicator for population size.
 #'
-#' @usage Forest.knolls(p,K,r,ntaxa, gens)
+#' @usage tips.Dis(p,K,r,ntaxa, gens)
 #'
 #' @param p a numeric object with the intended proportion of the A allele in the populationche
 #' @param K a numeric object describing the carrying capacity.
@@ -19,18 +19,18 @@
 #'
 #' O'Meara, B. C., Smith, S. D., Armbruster, W. S., Harder, L. D., Hardy, C. R., Hileman, L. C., ... & Stevens, P. F. (2016). Non-equilibrium dynamics and floral trait interactions shape extant angiosperm diversity. Proc. R. Soc. B, 283(1830), 20152304.
 #'
-#' @importFrom diversitree, ape, arules, graphics, stats
+#' @importFrom graphics stats
 #'
 #' @examples
 #' K<-1000
 #' p<-1/(2*K)
-#' Forest.knolls(p,K,0.5,204,100)
+#' tips.Dis(p,K,0.5,204,100)
 #'
 #' @export
 
-Forest.knolls<-function(p,K,r,ntaxa,gens){
-  pAmean<-mean(Twin.peaks(p,K,r,gens)$pA)
-  pAsims<-replicate(ntaxa,Twin.peaks(runif(1,pAmean,min=0),K,r,gens)$pA[gens]) #maybe I should make this match
+tips.Dis<-function(p,K,r,ntaxa,gens){
+  pAmean<-mean(ex.Rescue(p,K,r,gens)$pA)
+  pAsims<-replicate(ntaxa,ex.Rescue(runif(1,pAmean,min=0),K,r,gens)$pA[gens]) #maybe I should make this match
   edges<-c(min(pAsims),quantile(pAsims,(1/3)),quantile(pAsims,(2/3)),max(pAsims)) #begin discretizing, creating bins
   unname(edges)
   dat<-discretize(pAsims,edges, method="fixed", labels=c("1","2","3")) #factor

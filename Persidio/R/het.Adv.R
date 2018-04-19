@@ -1,8 +1,8 @@
-#' Twin.peaks
+#' het.Adv
 #'
-#' @description Twin.peaks, a function describing selection on a population given a single climate change event that affects temperature by a 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. No allele has dominance and the population is in hardy weinberg equilibrium to denote genotype frequency. This function estimates population size.
+#' @description het.Adv, a function describing selection on a population given a single climate change event that affects temperature by a 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. This function depicts heterozygous advantage while estimating population size.
 #'
-#' @usage Twin.peaks(p,K,r,gens)
+#' @usage het.Adv(p,K,r,gens)
 #'
 #' @param p an object describing the initial frequency of A
 #' @param r a number giving the population growth rate
@@ -18,18 +18,16 @@
 #'
 #' Lindsey, H. A., Gallie, J., Taylor, S., & Kerr, B. (2013). Evolutionary rescue from extinction is contingent on a lower rate of environmental change. Nature, 494(7438), 463.
 #'
-#' @importFrom diversitree, ape, arules, graphics, stats
+#' @importFrom graphics stats
 #'
 #' @examples
 #' K<-1000
 #' p<-1/(2*K)
-#' Twin.peaks(p,K,2,100)
+#' het.Adv(p,K,2,100)
 #'
 #' @export
 
-Twin.peaks<-function(p,K,r,gens){
-  K<-K
-  q<-1-p
+het.Adv<-function(p,r,gens){
   pA<-rep(NA,gens)
   Nt<-rep(NA,gens)
   NAA<-K*p^2
@@ -40,7 +38,11 @@ Twin.peaks<-function(p,K,r,gens){
     wAA<-0.95-0.25*Temp #fitness function
     wAa<-0.75+0.02*Temp
     waa<-0.45+0.25*Temp
-
+    ######### (d) #########
+    #wAa<-wAA #playing around with the fitness function here. adding dominance to each allele.
+    #wAa<-waa
+    wAa<-colMeans(rbind(wAA,waa))
+    #######################
     sAA<-NAA*wAA #expected number of survival
     sAa<-NAa*wAa
     saa<-Naa*waa
@@ -51,9 +53,9 @@ Twin.peaks<-function(p,K,r,gens){
     }
     pA[i]<-(sAA[i]+sAa[i]/2)/Ns[i] #surviving
     qa<-1-pA[i] #reproducing
-    NAA<-Nt[i]*pA[i]^2 #HW equilibrium
+    NAA<-Nt[i]*pA[i]^2
     NAa<-Nt[i]*2*pA[i]*qa #now the alleles are changing based on hardy weinburg each gen *simulating evolution*
     Naa<-Nt[i]*qa^2
   }
-  list(pA=pA,Nt=Nt,plot(Nt)) #when I try adding fancy arguments in the plot function within the output some weird errors occur, please excuse the graphs simplicity.
+  list(pA=pA,Nt=Nt,plot(Nt)) #please excuse the graphs simplicity.
 }

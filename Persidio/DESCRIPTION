@@ -6,7 +6,7 @@ Author: Jonathan Dickey
 Maintainer: Jonathan Dickey <jdickey9@vols.utk.edu>
 Description: Persidio is a package aimed to inform the parameters of a Geographic State Speciation and Extinction Model with population ecology and population genetic theory based upon a long term change in climate (temperature raised 2 degrees). The locus of interest will be thermal tolerance with genotypes AA, Aa, and aa. 
 License: GPL (>= 2)
-Depends: diversitree, ape, arules, graphics, stats
+Depends: diversitree, ape, arules
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
