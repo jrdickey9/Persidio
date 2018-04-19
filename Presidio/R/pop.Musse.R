@@ -61,3 +61,4 @@ pop.Musse<-function(phy,states,k,q.div){
   datdat<-data.frame(c(lambda1,lambda2,lambda3,mu1,mu2,mu3,q12,q13,q21,q23,q31,q32)) #all parameters
   list(anovvva=anovvva, samps=samps, datdat)
 }
+#TEST
