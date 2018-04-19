@@ -1,8 +1,8 @@
-#' M.dolores
+#' Dolores
 #'
-#' @descrtiption Multi-State Speciation and Extinction (MuSSE) model using bayesian based inference on parameters. Speciation and extinction parameters are informed through a population ecology and population genetics framework.
+#' @description Multi-State Speciation and Extinction (MuSSE) model using bayesian based inference on parameters. Speciation and extinction parameters are informed through a population ecology and population genetics framework.
 #'
-#' @usage M.dolores(phy, states, k, q.div)
+#' @usage Dolores(phy, states, k, q.div)
 #'
 #' @param phy a phylogenetic tree, in ape "phylo" format.
 #' @param states a numeric vector from Forest.knolls() depicting the character states of interest.
@@ -22,15 +22,34 @@
 #'
 #' O'Meara, B. C., Smith, S. D., Armbruster, W. S., Harder, L. D., Hardy, C. R., Hileman, L. C., ... & Stevens, P. F. (2016). Non-equilibrium dynamics and floral trait interactions shape extant angiosperm diversity. Proc. R. Soc. B, 283(1830), 20152304.
 #'
-#'@example Dolores(phy,states)
+#' @importFrom diversitree, ape, arules, graphics, stats
 #'
-M.dolores<-function(phy,states,k,q.div){
-  #states<-Forest.knolls(p,K,r,ntaxa,gens) #just reiterating the output from the last function.
+#' @examples
+#' pars <- c(.1,  .15,  .2,  # lambda 1, 2, 3
+#'         .03, .045, .06,   # mu 1, 2, 3
+#'         .05,    0,        # q12, q13
+#'         .05,  .05,        # q21, q23
+#'          0,   .05)        # q31, q32
+#' set.seed(2)
+#' phy <- tree.musse(pars, 204, x0=1)
+#' K<-1000
+#' p<-1/(2*K)
+#' ntaxa<-204
+#' gens<-100
+#' r<-0.5
+#' states<-Forest.knolls(p,K,r,ntaxa,gens)
+#' k<-3
+#' q.div<-5
+#' Dolores(phy,states,k,q.div)
+#'
+#' @export
+
+Dolores<-function(phy,states,k,q.div){
   names(states)<-phy$tip.label
   phy$tip.state<-states #output of forest.knolls
   #likelihood function and MuSSE
   lik<-make.musse(phy,phy$tip.state,3,strict=TRUE,control=list())
-  likb<-constrain(lik,lambda2~lambda1,lambda3~lambda1,mu2~mu1,mu3~mu1,q13~q23,q21~q12,q23~q12,q31~q32   ,q32~q21)
+  likb<-constrain(lik,lambda2~lambda1,lambda3~lambda1,mu2~mu1,mu3~mu1,q13~q23,q21~q12,q23~q12,q31~q32,q32~q21)
   the.start<-starting.point.musse(phy,k,q.div=q.div,yule=FALSE)
   max.le<-find.mle(likb,the.start[argnames(likb)])
   lik.lam<-constrain(lik,mu2~mu1,mu3~mu1,q13~q23,q21~q12,q23~q12,q31~q32,q32~q21)
@@ -40,5 +59,6 @@ M.dolores<-function(phy,states,k,q.div){
   samps<-mcmc(lik.lam,coef(fit.lam),nstep=1000,w=1,prior=prior,print.every=50)
   profiles.plot(samples[2:4], col)
   abline(v=c(lambda1,lambda2,lambda3), col=col) #speciation rates for each character state
-  list(anovvva=anovvva, samps=samps)
+  datdat<-data.frame(c(lambda1,lambda2,lambda3,mu1,mu2,mu3,q12,q13,q21,q23,q31,q32))
+  list(anovvva=anovvva, samps=samps, datdat)
 }

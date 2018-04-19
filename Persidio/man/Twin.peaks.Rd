@@ -16,10 +16,21 @@ Twin.peaks(p,K,r,gens)
 \item{gens}{is the number of generations}
 }
 \description{
-Twin.peaks, a function describing selection, survival and reproduction, on a population given a single climate change event that affects temperature in an island ecosystem, 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. No allele has dominance and the population is in hardy weinberg equilibrium to denote genotype frequency.
+Twin.peaks, a function describing selection on a population given a single climate change event that affects temperature by a 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. No allele has dominance and the population is in hardy weinberg equilibrium to denote genotype frequency. This function estimates population size.
 }
 \examples{
-p<-1/(2*K)
 K<-1000
+p<-1/(2*K)
 Twin.peaks(p,K,2,100)
+
+}
+\references{
+Bay, R. A., Rose, N. H., Logan, C. A., & Palumbi, S. R. (2017). Genomic models predict successful coral adaptation if future ocean warming rates are reduced. Science advances, 3(11), e1701413.
+
+Gomulkiewicz, R., & Holt, R. D. (1995). When does evolution by natural selection prevent extinction?. Evolution, 49(1), 201-207.
+
+Lindsey, H. A., Gallie, J., Taylor, S., & Kerr, B. (2013). Evolutionary rescue from extinction is contingent on a lower rate of environmental change. Nature, 494(7438), 463.
+}
+\author{
+Jonathan Dickey
 }

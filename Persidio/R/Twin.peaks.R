@@ -18,11 +18,15 @@
 #'
 #' Lindsey, H. A., Gallie, J., Taylor, S., & Kerr, B. (2013). Evolutionary rescue from extinction is contingent on a lower rate of environmental change. Nature, 494(7438), 463.
 #'
+#' @importFrom diversitree, ape, arules, graphics, stats
+#'
 #' @examples
+#' K<-1000
+#' p<-1/(2*K)
 #' Twin.peaks(p,K,2,100)
+#'
+#' @export
 
-#K<-1000
-#p<-1/(2*K)
 Twin.peaks<-function(p,K,r,gens){
   K<-K
   q<-1-p
