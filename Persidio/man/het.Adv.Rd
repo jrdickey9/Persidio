@@ -9,11 +9,11 @@ het.Adv(p,K,r,gens)
 \arguments{
 \item{p}{an object describing the initial frequency of A}
 
+\item{K}{describes the carrying capacity}
+
 \item{r}{a number giving the population growth rate}
 
 \item{gens}{is the number of generations}
-
-\item{K}{describes the carrying capacity}
 }
 \description{
 het.Adv, a function describing selection on a population given a single climate change event that affects temperature by a 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. This function depicts heterozygous advantage while estimating population size.

@@ -22,7 +22,10 @@
 #'
 #' O'Meara, B. C., Smith, S. D., Armbruster, W. S., Harder, L. D., Hardy, C. R., Hileman, L. C., ... & Stevens, P. F. (2016). Non-equilibrium dynamics and floral trait interactions shape extant angiosperm diversity. Proc. R. Soc. B, 283(1830), 20152304.
 #'
-#' @importFrom graphics stats
+#' @import diversitree
+#'
+#' @importFrom graphics abline
+#' @importFrom stats anova coef
 #'
 #' @examples
 #' params<- c(.1, .15, .2, .03, .045, .06, .05, 0, .05, .05, 0, .05)

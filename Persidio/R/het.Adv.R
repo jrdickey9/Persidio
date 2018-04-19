@@ -18,7 +18,7 @@
 #'
 #' Lindsey, H. A., Gallie, J., Taylor, S., & Kerr, B. (2013). Evolutionary rescue from extinction is contingent on a lower rate of environmental change. Nature, 494(7438), 463.
 #'
-#' @importFrom graphics stats
+#' @importFrom graphics plot
 #'
 #' @examples
 #' K<-1000
@@ -27,7 +27,9 @@
 #'
 #' @export
 
-het.Adv<-function(p,r,gens){
+het.Adv<-function(p,K,r,gens){
+  K<-K
+  q<-1-p
   pA<-rep(NA,gens)
   Nt<-rep(NA,gens)
   NAA<-K*p^2

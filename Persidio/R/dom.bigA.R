@@ -5,9 +5,10 @@
 #' @usage dom.bigA(p,K,r,gens)
 #'
 #' @param p an object describing the initial frequency of A
+#' @param K describes the carrying capacity
 #' @param r a number giving the population growth rate
 #' @param gens is the number of generations
-#' @param K describes the carrying capacity
+#'
 #'
 #' @author Jonathan Dickey
 #'
@@ -18,7 +19,7 @@
 #'
 #' Lindsey, H. A., Gallie, J., Taylor, S., & Kerr, B. (2013). Evolutionary rescue from extinction is contingent on a lower rate of environmental change. Nature, 494(7438), 463.
 #'
-#' @importFrom graphics stats
+#' @importFrom graphics plot
 #'
 #' @examples
 #' K<-1000
@@ -27,7 +28,9 @@
 #'
 #' @export
 
-dom.bigA<-function(p,r,gens){
+dom.bigA<-function(p,K,r,gens){
+  K<-K
+  q<-1-p
   pA<-rep(NA,gens)
   Nt<-rep(NA,gens)
   NAA<-K*p^2

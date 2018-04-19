@@ -9,11 +9,11 @@ dom.lila(p,K,r,gens)
 \arguments{
 \item{p}{an object describing the initial frequency of A}
 
+\item{K}{describes the carrying capacity}
+
 \item{r}{a number giving the population growth rate}
 
 \item{gens}{is the number of generations}
-
-\item{K}{describes the carrying capacity}
 }
 \description{
 dom.lila, a function describing selection on a population given a single climate change event that affects temperature by a 2 degree threshold. Exploring with the geontypes AA, Aa, and aa. The a allele has dominance (wAa=waa). This function estimates population size.

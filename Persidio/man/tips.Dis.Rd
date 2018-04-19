@@ -4,7 +4,7 @@
 \alias{tips.Dis}
 \title{tips.Dis}
 \usage{
-tips.Dis(p,K,r,ntaxa, gens)
+tips.Dis(p, K, r, ntaxa, gens, dom)
 }
 \arguments{
 \item{p}{a numeric object with the intended proportion of the A allele in the populationche}
@@ -16,14 +16,16 @@ tips.Dis(p,K,r,ntaxa, gens)
 \item{ntaxa}{a numeric object with the number of taxa at the tips.}
 
 \item{gens}{a numeric object with the number of generations of interest or time in gens at the tip.}
+
+\item{dom}{an argument selecting allele dominancy: No dominancy, AA dominancy, Aa advantage, or aa advantage}
 }
 \description{
-tips.Dis, a function that estimates the proportion of the A allele in a population given a single generation of interest and n number of taxa while discreteizing the proportion of the A allele into three traits 1 (high), 2 (medium), 3 (low) which will be an indicator for population size.
+tips.Dis, a function that estimates the proportion of the A allele in a population given a single generation of interest and n number of taxa. In addition tips.Dis discretizes the proportion of the A allele into three traits 1 (high), 2 (medium), 3 (low): an indicator for population size based on allelic dominancy.
 }
 \examples{
 K<-1000
 p<-1/(2*K)
-tips.Dis(p,K,0.5,204,100)
+tips.Dis(p, K, 0.5, 204, 100, dom="NONE")
 
 }
 \references{
