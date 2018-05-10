@@ -61,3 +61,6 @@ ex.Rescue<-function(p,K,r,gens){
   }
   list(pA=pA,Nt=Nt,plot(Nt)) #when I try adding fancy arguments in the plot function within the output some errors occur, please excuse the graphs simplicity.
 }
+
+
+
